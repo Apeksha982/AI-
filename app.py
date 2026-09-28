@@ -1,10 +1,13 @@
 import streamlit as st
+import os
 from agent import run_agent
 from tools import build_index_from_pdf
 
+st.write(f"DEBUG - key starts with: {os.environ.get('GROQ_API_KEY', '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')[:7]} | length: {len(os.environ.get('GROQ_API_KEY', ''))}")
+
 st.set_page_config(page_title="Agentic PDF Assistant", page_icon="")
-st.title("  Your Assistant")
-st.caption(" ask questions.")
+st.title("Your Assistant")
+st.caption("ask questions.")
 
 uploaded = st.file_uploader("Upload a PDF", type="pdf")
 if uploaded is not None and st.session_state.get("last_file") != uploaded.name:
@@ -22,7 +25,7 @@ for entry in st.session_state.history:
     with st.chat_message(entry["role"]):
         st.write(entry["content"])
         if entry.get("steps"):
-            with st.expander(" reasoning"):
+            with st.expander("reasoning"):
                 for step in entry["steps"]:
                     st.write("- " + step)
 
