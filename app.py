@@ -3,7 +3,6 @@ import os
 from agent import run_agent
 from tools import build_index_from_pdf
 
-st.write(f"DEBUG - key starts with: {os.environ.get('GROQ_API_KEY', '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')[:7]} | length: {len(os.environ.get('GROQ_API_KEY', ''))}")
 
 st.set_page_config(page_title="Agentic PDF Assistant", page_icon="")
 st.title("Your Assistant")
